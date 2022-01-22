@@ -1,0 +1,27 @@
+.navigation {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    margin: 2rem 2rem 0 0;
+}
+
+.navText {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    .navTitle {
+        font-weight: bold;
+    }
+
+    .navSubtitle {
+
+    }
+}
+
+.customNavItem {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+}
