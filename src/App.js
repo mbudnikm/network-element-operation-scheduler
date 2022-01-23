@@ -1,15 +1,32 @@
 import "bootstrap/scss/bootstrap.scss"
 import './App.scss';
 import Header from "./components/Header/Header";
-import ContentContainer from "./components/ContentContainer/ContentContainer";
+import Navigation from "./components/Navigation/Navigation";
+import Alerts from "./components/Alerts/Alerts";
+import FirstStep from "./components/FirstStep/FirstStep";
+import SecondStep from "./components/SecondStep/SecondStep";
+import ThirdStep from "./components/ThirdStep/ThirdStep";
+import { Switch, Route, withRouter, useHistory, Redirect } from 'react-router-dom'
 
 function App() {
+
+    const history = useHistory()
+
     return (
         <div className="App">
             <Header />
-            <ContentContainer />
+            <div className="d-flex row no-wrap p-3">
+                <Navigation currentPath={history.location.pathname}/>
+                <Alerts />
+                <Switch>
+                    <Redirect exact from="/" to="/first-step" />
+                    <Route path="/first-step" render={() => <FirstStep />} />
+                    <Route path="/second-step" render={() => <SecondStep/>} />
+                    <Route path="/third-step" render={() => <ThirdStep />} />
+                </Switch>
+            </div>
         </div>
     );
 }
 
-export default App;
+export default withRouter(App);
