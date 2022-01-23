@@ -12,13 +12,13 @@ const Alerts = () => {
     const renderIconByAlertType = (type) => {
         switch (type) {
             case 'error': {
-                return <i className="icofont-close-circled text-danger"></i>
+                return <i className="fas fa-times pe-2"></i>
             }
             case 'success': {
-                return <i className="icofont-check-circled text-succsess"></i>
+                return <i className="fas fa-check pe-2"></i>
             }
             default: {
-                return <i className="icofont-warning-alt text-info"></i>
+                return <i className="fas fa-exclamation pe-2"></i>
             }
         }
     }
@@ -39,8 +39,7 @@ const Alerts = () => {
                     onClose={() => dispatch(removeAlertAction({ uuid: alert.uuid}))}
                     key={alert.uuid}
                     dismissible>
-                        {renderIconByAlertType(alert.type)}
-                    <p>{alert.msg}</p>
+                    <p>{renderIconByAlertType(alert.type)} {alert.msg}</p>
                 </Alert>)}
         </div>
     )
