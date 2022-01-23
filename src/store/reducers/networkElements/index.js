@@ -25,9 +25,13 @@ const networkElementsReducer = (state = initialState, action) => {
             }
         }
         case SET_SELECTED_NETWORK_ELEMENTS: {
-            return {
-                ...state,
-                selectedNetworkElements: action.payload
+            const isElementSelected = state.selectedNetworkElements.some(el => el.id === action.payload.id)
+
+            if (isElementSelected) {
+                const newSelectedElements = state.selectedNetworkElements.filter(el => el.id !== action.payload.id)
+                return {...state, selectedNetworkElements: newSelectedElements}
+            } else {
+                return {...state, selectedNetworkElements: [...state.selectedNetworkElements, action.payload]}
             }
         }
         default: {

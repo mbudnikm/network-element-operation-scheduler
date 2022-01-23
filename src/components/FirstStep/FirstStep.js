@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Col, Button, Table } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { filterData } from "../../common/helpers";
-import { setNetworkElementsFilteredListAction } from "../../store/actions/networkElements/actions";
+import { setNetworkElementsFilteredListAction, setSelectedNetworkElementsAction } from "../../store/actions/networkElements/actions";
 import { useHistory } from 'react-router-dom'
 
 const FirstStep = () => {
@@ -75,7 +75,11 @@ const FirstStep = () => {
                         <tr key={el.id}>
                             <td>
                                 <div className="form-check">
-                                    <input className="form-check-input" type="checkbox" value="" />
+                                    <input 
+                                        className="form-check-input" 
+                                        type="checkbox"
+                                        // checked={selectedNetworkElements.find(id => id === el.id)}
+                                        onChange={() => dispatch(setSelectedNetworkElementsAction(el))} />
                                 </div>
                             </td>
                             <td>{el.ip}</td>
