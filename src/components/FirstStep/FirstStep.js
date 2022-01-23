@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Col, Button, Table } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { filterData } from "../../common/helpers";
-import { setNetworkElementsFilteredListAction, setSelectedNetworkElementsAction } from "../../store/actions/networkElements/actions";
+import { 
+    setNetworkElementsFilteredListAction, 
+    setSelectedNetworkElementsAction, 
+    setUnselectAllNetworkElementsAction 
+} from "../../store/actions/networkElements/actions";
 import { useHistory } from 'react-router-dom'
 
 const FirstStep = () => {
@@ -15,10 +19,6 @@ const FirstStep = () => {
     const selectedNetworkElements = useSelector(({ networkElementsReducer }) => networkElementsReducer.selectedNetworkElements)
 
     const [searchInputValue, setSearchInputValue] = useState('')
-
-    const handleSearchInputChange = (e) => {
-        setSearchInputValue(e.target.value)
-    }
 
     const areElementsSelected = selectedNetworkElements.length > 0
 
@@ -39,6 +39,10 @@ const FirstStep = () => {
         title: "DN",
         field: "dn",
     }]
+
+    const handleSearchInputChange = (e) => {
+        setSearchInputValue(e.target.value)
+    }
 
     useEffect(() => {
         const filteredData = filterData(networkElementsList, searchInputValue)
@@ -78,7 +82,7 @@ const FirstStep = () => {
                                     <input 
                                         className="form-check-input" 
                                         type="checkbox"
-                                        // checked={selectedNetworkElements.find(id => id === el.id)}
+                                        checked={selectedNetworkElements.some(selectedElement => selectedElement.id === el.id)}
                                         onChange={() => dispatch(setSelectedNetworkElementsAction(el))} />
                                 </div>
                             </td>
@@ -97,6 +101,7 @@ const FirstStep = () => {
                 </tbody>
             </Table>
             <div className="d-flex flex-row justify-content-end pt-3">
+                <Button disabled={!areElementsSelected} variant="outline-primary" className="me-2" onClick={() => dispatch(setUnselectAllNetworkElementsAction())}>Cancel</Button>
                 <Button disabled={!areElementsSelected} variant="primary" onClick={() => history.push("/second-step")}>Continue</Button>
             </div>
         </Col>

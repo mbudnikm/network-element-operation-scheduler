@@ -1,7 +1,9 @@
 import { 
     SET_NETWORK_ELEMENTS_LIST, 
     SET_NETWORK_ELEMENTS_FILTERED_LIST, 
-    SET_SELECTED_NETWORK_ELEMENTS 
+    SET_SELECTED_NETWORK_ELEMENTS, 
+    SET_UNSELECT_ALL_NETWORK_ELEMENTS,
+    SET_SELECT_ALL_NETWORK_ELEMENTS
 } from '../../actions/networkElements/actionTypes';
 
 const initialState = {
@@ -33,6 +35,12 @@ const networkElementsReducer = (state = initialState, action) => {
             } else {
                 return {...state, selectedNetworkElements: [...state.selectedNetworkElements, action.payload]}
             }
+        }
+        case SET_UNSELECT_ALL_NETWORK_ELEMENTS: {
+            return {...state, selectedNetworkElements: []}
+        }
+        case SET_SELECT_ALL_NETWORK_ELEMENTS: {
+            return {...state, selectedNetworkElements: action.payload}
         }
         default: {
             return state

@@ -43,6 +43,17 @@
     background-color: $primary !important;
 }
 
+.btn-outline-primary {
+    border-color: $primary;
+    color: $primary;
+    background: $background;
+
+    &:hover:not([disabled]) {
+      background: $primary;
+      color: $background;
+    }
+}
+
 .table-responsive {
   overflow-y: scroll;
   max-height: 60vh;
