@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Navigation.module.scss"
-import { Tab, Row, Col, Nav } from 'react-bootstrap'
+import { Tab, Nav } from 'react-bootstrap'
 import { withRouter, useHistory } from 'react-router-dom'
 
 const Navigation = () => {

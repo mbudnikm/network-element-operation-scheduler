@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Alert } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { addAlertAction, removeAlertAction } from "../../store/actions/alerts/actions";
+import { removeAlertAction } from "../../store/actions/alerts/actions";
 
 const Alerts = () => {
 
@@ -22,14 +22,6 @@ const Alerts = () => {
             }
         }
     }
-
-    useEffect(() => {
-        dispatch(addAlertAction({
-            type: 'success',
-            variant: 'success',
-            msg: 'Hello. It is an alert'
-        }))
-    }, [])
 
     return (
         <div className="container position-absolute w-50 ml-25" style={{zIndex: 1}}>

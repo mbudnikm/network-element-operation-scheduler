@@ -16,6 +16,8 @@ function App() {
     const history = useHistory()
     const dispatch = useDispatch()
 
+    const navigateTo = (url) => history.push(url);
+
     useEffect(() => {
         dispatch(fetchNetworkElementsListThunk())
     }, [])
@@ -24,7 +26,7 @@ function App() {
         <div className="App">
             <Header />
             <div className="d-flex row no-wrap p-3">
-                <Navigation currentPath={history.location.pathname}/>
+                <Navigation />
                 <Alerts />
                 <Switch>
                     <Redirect exact from="/" to="/first-step" />
