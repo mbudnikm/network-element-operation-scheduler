@@ -32,7 +32,7 @@ const Alerts = () => {
     }, [])
 
     return (
-        <div className="container position-absolute w-50 ml-25">
+        <div className="container position-absolute w-50 ml-25" style={{zIndex: 1}}>
             {alerts.map((alert) => 
                 <Alert 
                     variant={alert.variant} 
