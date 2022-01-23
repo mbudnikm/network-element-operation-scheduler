@@ -1,7 +1,8 @@
-import { SET_NETWORK_ELEMENTS_LIST } from '../../actions/networkElements/actionTypes';
+import { SET_NETWORK_ELEMENTS_LIST, SET_NETWORK_ELEMENTS_FILTERED_LIST } from '../../actions/networkElements/actionTypes';
 
 const initialState = {
-    networkElementsList: []
+    networkElementsList: [],
+    networkElementsFilteredList: []
 }
 
 const networkElementsReducer = (state = initialState, action) => {
@@ -10,6 +11,12 @@ const networkElementsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 networkElementsList: action.payload
+            }
+        }
+        case SET_NETWORK_ELEMENTS_FILTERED_LIST: {
+            return {
+                ...state,
+                etworkElementsFilteredList: action.payload
             }
         }
         default: {

@@ -2,7 +2,6 @@ import db from '../../../common/config/firebaseConfig'
 import { setNetworkElementsListAction } from './actions'
 import { addAlertAction } from '../alerts/actions';
 import { doc, getDoc } from 'firebase/firestore'
-import uuid from "../../../common/uuid"
 
 export const fetchNetworkElementsListThunk = () => async (dispatch) => {
 

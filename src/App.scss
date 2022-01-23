@@ -1,3 +1,9 @@
+@import "./variables.scss";
+
+.App {
+  height: 100vh;
+  overflow: hidden;
+}
 
 // custom variant of nav link
 .nav-round-pills {
@@ -11,8 +17,8 @@
     
       .nav-link.active,
       .show > .nav-link {
-        color: #fff;
-        background-color: #0275d8;
+        color: $background;
+        background-color: $primary;
         width: 40px;
         height: 40px;
       }
@@ -29,10 +35,36 @@
 .input-group-text {
     font-size: 1.5rem;
     color: #717579;
-    background-color: #fff;
+    background-color: $background;
     border-radius: 0.25rem 0 0 0.25rem;
 }
 
 .btn-primary {
-    background-color: #0275d8 !important;
+    background-color: $primary !important;
+}
+
+.table-responsive {
+  overflow-y: scroll;
+  max-height: 65%;
+  background: $background;
+
+    tbody {
+      overflow-y: auto;
+    }
+
+    thead {
+      position: sticky;
+      top: 0px;
+      background-color: $table-header;
+      color: $background;
+    }
+
+    tr > *:nth-child(1) { width: 5%; }
+    tr > *:nth-child(2) { width: 40%; }
+    tr > *:nth-child(3) { width: 15%; }
+    tr > *:nth-child(4) { width: 40%; }
+}
+
+.table > :not(:first-child) {
+  border-top: 0;
 }

@@ -20,19 +20,19 @@ const FirstStep = () => {
     const tableHeaders = [{
         id: 0,
         title: "",
-        field: "checkbox"
+        field: "checkbox",
     }, {
         id: 1,
         title: "IP Address",
-        field: "ip"
+        field: "ip",
     }, {
         id: 2,
         title: "Type",
-        field: "type"
+        field: "type",
     }, {
         id: 3,
         title: "DN",
-        field: "dn"
+        field: "dn",
     }]
 
     return (
@@ -57,7 +57,7 @@ const FirstStep = () => {
                 <tbody>
                     {networkElementsList.map(el =>                     
                         <tr key={el.id}>
-                            <td>checkbox</td>
+                            <td>chec</td>
                             <td>{el.ip}</td>
                             <td>{el.type}</td>
                             <td>{el.dn}</td>
@@ -65,7 +65,7 @@ const FirstStep = () => {
                     )}
                 </tbody>
             </Table>
-            <div className="d-flex flex-row justify-content-end">
+            <div className="d-flex flex-row justify-content-end pt-3">
                 <Button disabled variant="primary">Continue</Button>
             </div>
         </Col>
