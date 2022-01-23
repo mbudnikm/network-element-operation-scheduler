@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Col } from 'react-bootstrap'
+import { Col, Button } from 'react-bootstrap'
 import styles from "./FirstStep.module.scss"
 
 const FirstStep = () => {
@@ -22,6 +22,12 @@ const FirstStep = () => {
                     aria-label="Search" 
                     value={searchInputValue} 
                     onChange={handleSearchInputChange} />
+            </div>
+            <table>
+                    <th>hdhdud</th>
+            </table>
+            <div className="d-flex flex-row justify-content-end">
+                <Button disabled variant="primary">Continue</Button>
             </div>
         </Col>
     )
