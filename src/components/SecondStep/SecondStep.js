@@ -3,11 +3,8 @@ import { Col } from 'react-bootstrap'
 
 const SecondStep = () => {
     return (
-        <>
-            <Col sm={9}>
-                Second
-            </Col>
-        </>
+        <Col sm={9} className="customContainer">
+        </Col>
     )
 }
 

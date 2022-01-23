@@ -6,14 +6,11 @@ import { withRouter, useHistory } from 'react-router-dom'
 const Navigation = () => {
 
     const history = useHistory();
-    const currentPath = history.location.pathname
-    const [selectedPath, setSelectedPath] = useState(currentPath)
-
-    const navigateTo = (url) => history.push(url);
+    const [currentPath, setCurrentPath] = useState(history.location.pathname)
 
     useEffect(() => {
-        setSelectedPath(currentPath)
-    }, [currentPath])
+        setCurrentPath(history.location.pathname)
+    }, [history.location.pathname])
 
     return (
         <div className={`{${styles.navigation}} w-25`}>
@@ -21,7 +18,6 @@ const Navigation = () => {
                 <Nav variant="round-pills" className="flex-column">
                     <Nav.Item className={`${styles.customNavItem}`}>
                         <Nav.Link 
-                            onClick={() => navigateTo("/first-step")}
                             eventKey="/first-step"
                             className="cursor-pointer m-4 mt-2">
                                 1
@@ -33,7 +29,6 @@ const Navigation = () => {
                     </Nav.Item>
                     <Nav.Item className={`${styles.customNavItem}`}>
                         <Nav.Link 
-                            onClick={() => navigateTo("/second-step")} 
                             eventKey="/second-step"  
                             className="cursor-pointer m-4 mt-2">
                                 2
@@ -45,7 +40,6 @@ const Navigation = () => {
                     </Nav.Item>
                     <Nav.Item className={`${styles.customNavItem}`}>
                         <Nav.Link 
-                            onClick={() => navigateTo("/third-step")}
                             eventKey="/third-step" 
                             className="cursor-pointer m-4 mt-2">
                                 3

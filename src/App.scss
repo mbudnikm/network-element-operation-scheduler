@@ -68,3 +68,10 @@
 .table > :not(:first-child) {
   border-top: 0;
 }
+
+.customContainer {
+  padding-left: 2rem;
+  padding-right: 3rem;
+  padding-top: 1.25rem;
+  max-height: 70%;
+}

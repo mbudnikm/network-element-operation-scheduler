@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Col, Button, Table } from 'react-bootstrap'
-import styles from "./FirstStep.module.scss"
 import { useSelector, useDispatch } from 'react-redux'
 import { filterData } from "../../common/helpers";
 import { setNetworkElementsFilteredListAction } from "../../store/actions/networkElements/actions";
+import { useHistory } from 'react-router-dom'
 
 const FirstStep = () => {
 
     const dispatch = useDispatch()
+    const history = useHistory()
     
     const networkElementsList = useSelector(({ networkElementsReducer }) => networkElementsReducer.networkElementsList)
     const networkElementsFilteredList = useSelector(({ networkElementsReducer }) => networkElementsReducer.networkElementsFilteredList)
@@ -51,7 +52,7 @@ const FirstStep = () => {
     }, [])
 
     return (
-        <Col sm={9} className={`${styles.container}`}>
+        <Col sm={9} className="customContainer">
             <div className="input-group mb-3">
                 <div className="input-group-prepend">
                     <span className="input-group-text"><i className="fas fa-search"></i></span>
@@ -92,7 +93,7 @@ const FirstStep = () => {
                 </tbody>
             </Table>
             <div className="d-flex flex-row justify-content-end pt-3">
-                <Button disabled={!areElementsSelected} variant="primary">Continue</Button>
+                <Button disabled={!areElementsSelected} variant="primary" onClick={() => history.push("/second-step")}>Continue</Button>
             </div>
         </Col>
     )
