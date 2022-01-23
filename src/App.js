@@ -7,16 +7,13 @@ import Alerts from "./components/Alerts/Alerts";
 import FirstStep from "./components/FirstStep/FirstStep";
 import SecondStep from "./components/SecondStep/SecondStep";
 import ThirdStep from "./components/ThirdStep/ThirdStep";
-import { Switch, Route, withRouter, useHistory, Redirect } from 'react-router-dom'
+import { Switch, Route, withRouter, Redirect } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { fetchNetworkElementsListThunk } from './store/actions/networkElements/thunks'
 
 function App() {
 
-    const history = useHistory()
     const dispatch = useDispatch()
-
-    const navigateTo = (url) => history.push(url);
 
     useEffect(() => {
         dispatch(fetchNetworkElementsListThunk())
