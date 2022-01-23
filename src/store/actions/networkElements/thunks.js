@@ -9,6 +9,7 @@ export const fetchNetworkElementsListThunk = () => async (dispatch) => {
     } catch (e) {
         dispatch(addAlertAction({
             type: 'error',
+            variant: 'danger',
             msg: 'Server Communication Failed'
         }))
     }
