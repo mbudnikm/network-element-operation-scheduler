@@ -10,7 +10,7 @@ const alertsReducer = (state = initialState, action) => {
         case ADD_ALERT: {
             return { 
                     ...state, 
-                    alerts: [...state.alerts, {...action.payload, uuid: uuid() }]}
+                    alerts: [...state.alerts, {...action.payload, uuid: uuid()}]}
         }
         case REMOVE_ALERT: {
             const updatedAlerts = state.alerts.filter(alert => alert.uuid !== action.payload.uuid)

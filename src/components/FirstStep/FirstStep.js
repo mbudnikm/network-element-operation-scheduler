@@ -1,14 +1,39 @@
 import React, { useState, useEffect } from "react";
-import { Col, Button } from 'react-bootstrap'
+import { Col, Button, Table } from 'react-bootstrap'
 import styles from "./FirstStep.module.scss"
+import { useSelector } from 'react-redux'
 
 const FirstStep = () => {
+    
+    const networkElementsList = useSelector(({ networkElementsReducer }) => networkElementsReducer.networkElementsList)
 
     const [searchInputValue, setSearchInputValue] = useState('')
 
     const handleSearchInputChange = (e) => {
         setSearchInputValue(e.target.value)
     }
+
+    useEffect(() => {
+        console.log(networkElementsList)
+    }, [networkElementsList])
+
+    const tableHeaders = [{
+        id: 0,
+        title: "",
+        field: "checkbox"
+    }, {
+        id: 1,
+        title: "IP Address",
+        field: "ip"
+    }, {
+        id: 2,
+        title: "Type",
+        field: "type"
+    }, {
+        id: 3,
+        title: "DN",
+        field: "dn"
+    }]
 
     return (
         <Col sm={9} className={`${styles.container}`}>
@@ -23,9 +48,23 @@ const FirstStep = () => {
                     value={searchInputValue} 
                     onChange={handleSearchInputChange} />
             </div>
-            <table>
-                    <th>hdhdud</th>
-            </table>
+            <Table responsive bordered>
+                <thead>
+                    <tr>
+                        {tableHeaders.map(header => <th key={header.id}>{header.title}</th>)}
+                    </tr>
+                </thead>
+                <tbody>
+                    {networkElementsList.map(el =>                     
+                        <tr key={el.id}>
+                            <td>checkbox</td>
+                            <td>{el.ip}</td>
+                            <td>{el.type}</td>
+                            <td>{el.dn}</td>
+                        </tr>
+                    )}
+                </tbody>
+            </Table>
             <div className="d-flex flex-row justify-content-end">
                 <Button disabled variant="primary">Continue</Button>
             </div>

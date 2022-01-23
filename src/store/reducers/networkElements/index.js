@@ -1,7 +1,7 @@
 import { SET_NETWORK_ELEMENTS_LIST } from '../../actions/networkElements/actionTypes';
 
 const initialState = {
-    netowrkElementsList: []
+    networkElementsList: []
 }
 
 const networkElementsReducer = (state = initialState, action) => {
