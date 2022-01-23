@@ -1,5 +1,5 @@
 import db from '../../../common/config/firebaseConfig'
-import { setNetworkElementsListAction } from './actions'
+import { setNetworkElementsListAction, setNetworkElementsFilteredListAction } from './actions'
 import { addAlertAction } from '../alerts/actions';
 import { doc, getDoc } from 'firebase/firestore'
 
@@ -11,6 +11,7 @@ export const fetchNetworkElementsListThunk = () => async (dispatch) => {
         const networkElementsSnap = await getDoc(networkElementsRef)
         const fetchedNetworkElements = Object.values(networkElementsSnap.data())
         dispatch(setNetworkElementsListAction(...fetchedNetworkElements)); 
+        dispatch(setNetworkElementsFilteredListAction(...fetchedNetworkElements));
     } catch (e) {
         dispatch(addAlertAction({
             type: 'error',

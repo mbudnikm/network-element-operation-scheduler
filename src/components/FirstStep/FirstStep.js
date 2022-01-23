@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Col, Button, Table } from 'react-bootstrap'
 import styles from "./FirstStep.module.scss"
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { filterData } from "../../common/helpers";
+import { setNetworkElementsFilteredListAction } from "../../store/actions/networkElements/actions";
 
 const FirstStep = () => {
+
+    const dispatch = useDispatch()
     
     const networkElementsList = useSelector(({ networkElementsReducer }) => networkElementsReducer.networkElementsList)
+    const networkElementsFilteredList = useSelector(({ networkElementsReducer }) => networkElementsReducer.networkElementsFilteredList)
+    const selectedNetworkElements = useSelector(({ networkElementsReducer }) => networkElementsReducer.selectedNetworkElements)
 
     const [searchInputValue, setSearchInputValue] = useState('')
 
@@ -13,9 +19,7 @@ const FirstStep = () => {
         setSearchInputValue(e.target.value)
     }
 
-    useEffect(() => {
-        console.log(networkElementsList)
-    }, [networkElementsList])
+    const areElementsSelected = selectedNetworkElements.length > 0
 
     const tableHeaders = [{
         id: 0,
@@ -34,6 +38,17 @@ const FirstStep = () => {
         title: "DN",
         field: "dn",
     }]
+
+    useEffect(() => {
+        const filteredData = filterData(networkElementsList, searchInputValue)
+        dispatch(setNetworkElementsFilteredListAction(filteredData))
+    }, [searchInputValue])
+
+    useEffect(() => {
+        return () => {
+            setSearchInputValue("")
+        }
+    }, [])
 
     return (
         <Col sm={9} className={`${styles.container}`}>
@@ -55,18 +70,29 @@ const FirstStep = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {networkElementsList.map(el =>                     
+                    {networkElementsFilteredList.map(el =>                     
                         <tr key={el.id}>
-                            <td>chec</td>
+                            <td>
+                                <div className="form-check">
+                                    <input className="form-check-input" type="checkbox" value="" />
+                                </div>
+                            </td>
                             <td>{el.ip}</td>
                             <td>{el.type}</td>
                             <td>{el.dn}</td>
                         </tr>
                     )}
+                    {networkElementsFilteredList.length === 0 && (
+                        <tr className="text-center">
+                            <td colSpan="4">
+                                No data
+                            </td>
+                        </tr>
+                    )}
                 </tbody>
             </Table>
             <div className="d-flex flex-row justify-content-end pt-3">
-                <Button disabled variant="primary">Continue</Button>
+                <Button disabled={!areElementsSelected} variant="primary">Continue</Button>
             </div>
         </Col>
     )
